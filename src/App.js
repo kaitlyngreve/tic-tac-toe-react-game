@@ -1,6 +1,8 @@
 import Board from './Board';
 import Info from './Info';
+import Header from './Header';
 import { useState } from 'react';
+import "./index.css"
 
 function App() {
 
@@ -13,11 +15,17 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={() => resetBoard()}>
-        Reset Board
-      </button>
 
+      <Header />
+
+      <div classname={`winner ${winner !== '' ? '' : 'shrink'}`}>
+        <div className='winner-text'>{winner}</div>
+        <button onClick={() => resetBoard()}>
+          Reset Board
+        </button>
+      </div>
       <Board reset={reset} setReset={setReset} winner={winner} setWinner={setWinner} />
+      <Info />
     </div>
   );
 }
