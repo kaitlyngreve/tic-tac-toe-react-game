@@ -15,7 +15,7 @@ function Board({ reset, setReset, winner, setWinner }) {
         if (data[index - 1] === '' && winner === '') {
 
             // plays an X if it is player 1's turn, otherwise plays an O
-            const current = turn === 0 ? "X" : "O"
+            const current = turn === 0 ? "🥨" : "🍩"
             data[index - 1] = current;
 
             e.target.innerText = current;
@@ -85,7 +85,7 @@ function Board({ reset, setReset, winner, setWinner }) {
         // If someone has won, lets do something.
         if (checkWin()) {
             confetti(); // Yay confetti!
-            setWinner(turn === 0 ? "Player 2 Wins!" : "Player 1 Wins!");
+            setWinner(turn === 0 ? "Player 2 Wins! 🥳" : "Player 1 Wins! 🥳");
         } else if (checkTie()) {
             setWinner("It's a Tie!");
         }
