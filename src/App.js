@@ -3,6 +3,7 @@ import Info from './Info';
 import Header from './Header';
 import { useState } from 'react';
 import "./index.css"
+import confetti from 'canvas-confetti'
 
 function App() {
 
@@ -18,11 +19,13 @@ function App() {
 
       <Header />
 
-      <div classname={`winner ${winner !== '' ? '' : 'shrink'}`}>
-        <div className='winner-text'>{winner}</div>
-        <button onClick={() => resetBoard()}>
+      <div className='button-container'>
+        <button className='button' onClick={() => resetBoard()}>
           Reset Board
         </button>
+      </div>
+      <div classname='winner'>
+        <div className='winner-text'>{winner}</div>
       </div>
       <Board reset={reset} setReset={setReset} winner={winner} setWinner={setWinner} />
       <Info />

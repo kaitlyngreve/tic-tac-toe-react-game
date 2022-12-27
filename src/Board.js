@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
+import confetti from 'canvas-confetti';
 
 function Board({ reset, setReset, winner, setWinner }) {
 
+    // What players turn is it? 0 for Player 1, 1 for Player 2.
     const [turn, setTurn] = useState(0);
+
+    // What tiles are played, and by who.
     const [data, setData] = useState(['', '', '', '', '', '', '', '', '']);
 
     const boardRef = useRef(null);
@@ -61,9 +65,13 @@ function Board({ reset, setReset, winner, setWinner }) {
                 (data[2] === data[4] && data[2] === data[6] &&
                     data[2] !== ''));
         }
+
+        // Return true when someone has won
         const checkWin = () => {
+            // return true when any of the below conditions are true
             return (checkRow() || checkCol() || checkDiagonal());
         }
+
         const checkTie = () => {
             let count = 0;
             data.forEach((cell) => {
@@ -74,10 +82,12 @@ function Board({ reset, setReset, winner, setWinner }) {
             return count === 9;
         }
 
+        // If someone has won, lets do something.
         if (checkWin()) {
+            confetti(); // Yay confetti!
             setWinner(turn === 0 ? "Player 2 Wins!" : "Player 1 Wins!");
         } else if (checkTie()) {
-            setWinner("It's a Tie!")
+            setWinner("It's a Tie!");
         }
     })
 
